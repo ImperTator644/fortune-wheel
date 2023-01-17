@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1109.0" prefWidth="1919.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="45.0" layoutY="43.0" prefHeight="67.0" prefWidth="175.0" text="Round" />
+      <Label layoutX="390.0" layoutY="43.0" prefHeight="67.0" prefWidth="175.0" text="Money" />
+      <ImageView fitHeight="431.0" fitWidth="498.0" layoutX="45.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@wheel.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="1158.0" layoutY="27.0" prefHeight="100.0" prefWidth="245.0" text="Category" />
+      <HBox layoutX="1058.0" layoutY="226.0" prefHeight="100.0" prefWidth="200.0" />
+      <TextField layoutX="1058.0" layoutY="427.0" text="Single letter" />
+      <TextField layoutX="1058.0" layoutY="489.0" prefHeight="52.0" prefWidth="288.0" text="Sentence" />
+      <ListView layoutX="598.0" layoutY="555.0" prefHeight="200.0" prefWidth="200.0" />
+      <ListView layoutX="1102.0" layoutY="555.0" prefHeight="200.0" prefWidth="200.0" />
+   </children>
+</Pane>
