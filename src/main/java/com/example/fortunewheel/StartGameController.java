@@ -15,7 +15,7 @@ public class StartGameController {
         Parent parent = FXMLLoader.load(getClass().getResource("gameView.fxml"));
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setTitle("Wheel of fortune");
-        window.setScene(new Scene(parent, 800, 650));
+        window.setScene(new Scene(parent));
         window.show();
 
     }

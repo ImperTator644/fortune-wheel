@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -45,6 +46,8 @@ public class LetterController {
     public Label category;
     @FXML
     public Label hint_label;
+    @FXML
+    public ImageView wheelImageView;
     String[] data = {"MEXICO COUNTRY", "HEDWIG BIRD", "KUAKATA BEACH", "CANADA COUNTRY", "DOCTOR PROFESSION", "FOOTBALL GAME", "TEACHER MENTOR", "LEOPARD ANIMAL", "BICYCLE TRANSPORT", "SALMON FISH", "SPARROW BIRD", "PARROTS BIRD", "EAGLE BIRD", "TRAIN TRANSPORT", "SHIP TRANSPORT", "ENGINEER PROFESSION", "BANKER PROFESSION", "CRICKET GAME"};
     int random = new Random().nextInt(data.length);
     String word_hint = data[random];
@@ -181,6 +184,12 @@ public class LetterController {
         window.setTitle("Wheel of fortune");
         window.setScene(new Scene(parent, 800, 650));
         window.show();
+    }
+
+    @FXML
+    public void SpinTheWheel(ActionEvent actionEvent) {
+        WheelSection wheelSection = WheelSection.wheelSpin();
+        wheelImageView.setRotate(Integer.parseInt(wheelSection.getName())*15);
     }
 }
 

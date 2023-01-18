@@ -13,7 +13,7 @@ public class HelloApplication extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("startGameView.fxml"));
         primaryStage.setTitle("Wheel of fortune Game");
-        primaryStage.setScene(new Scene(root, 800, 650));
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
 
     }
