@@ -11,7 +11,7 @@
 
         <ImageView fitHeight="431.0" fitWidth="498.0" layoutX="100.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@wheel.jpg" />
+                <Image url="@wheel.png" />
             </image>
         </ImageView>
 
@@ -20,7 +20,6 @@
                 <Font size="36.0" />
             </font>
         </Button>
-
 
     </children>
 </AnchorPane>

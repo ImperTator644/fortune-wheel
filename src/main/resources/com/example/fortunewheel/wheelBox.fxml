@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="wheelBox" prefHeight="269.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fortunewheel.WheelController">
+
+    <ImageView fx:id="wheelImageView" fitHeight="400.0" fitWidth="400.0" layoutX="43.0" layoutY="-280.0" pickOnBounds="true" preserveRatio="true">
+        <image>
+            <Image url="@wheel.png" />
+        </image>
+    </ImageView>
+
+    <Button layoutX="43.0" layoutY="128.0" mnemonicParsing="false" onAction="#SpinTheWheel" prefHeight="100.0" prefWidth="400.0" text="Click to spin">
+        <font>
+            <Font size="36.0" />
+        </font>
+    </Button>
+
+</AnchorPane>

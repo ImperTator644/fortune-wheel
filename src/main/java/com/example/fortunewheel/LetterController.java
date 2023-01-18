@@ -1,17 +1,8 @@
 package com.example.fortunewheel;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 import java.util.Random;
 
 public class LetterController {
@@ -36,25 +27,22 @@ public class LetterController {
     public TextField tf9;
     @FXML
     public TextField tf10;
-
+    boolean success = true;
     @FXML
     public TextField sentence;
-
     @FXML
     public TextField singleLetter;
     @FXML
     public Label category;
-    @FXML
-    public Label hint_label;
-    @FXML
-    public ImageView wheelImageView;
-    String[] data = {"MEXICO COUNTRY", "HEDWIG BIRD", "KUAKATA BEACH", "CANADA COUNTRY", "DOCTOR PROFESSION", "FOOTBALL GAME", "TEACHER MENTOR", "LEOPARD ANIMAL", "BICYCLE TRANSPORT", "SALMON FISH", "SPARROW BIRD", "PARROTS BIRD", "EAGLE BIRD", "TRAIN TRANSPORT", "SHIP TRANSPORT", "ENGINEER PROFESSION", "BANKER PROFESSION", "CRICKET GAME"};
-    int random = new Random().nextInt(data.length);
-    String word_hint = data[random];
-    String[] split = word_hint.split(" ", 2);
-    String word = split[0];
-    String categ = split[1];
-    int letter_size = word.length();
+
+    private  String[] data = {"MEXICO COUNTRY", "HEDWIG BIRD", "KUAKATA BEACH", "CANADA COUNTRY", "DOCTOR PROFESSION", "FOOTBALL GAME", "TEACHER MENTOR", "LEOPARD ANIMAL", "BICYCLE TRANSPORT", "SALMON FISH", "SPARROW BIRD", "PARROTS BIRD", "EAGLE BIRD", "TRAIN TRANSPORT", "SHIP TRANSPORT", "ENGINEER PROFESSION", "BANKER PROFESSION", "CRICKET GAME"};
+    private  int random = new Random().nextInt(data.length);
+    private  String word_hint = data[random];
+    private  String[] split = word_hint.split(" ", 2);
+    public  String word = split[0];
+    private String categ = split[1];
+    private int letter_size = word.length();
+
 
     public void initialize() {
         setHint();
@@ -100,8 +88,10 @@ public class LetterController {
     public void CheckInputLetter() {
 
         String lett = singleLetter.getText();
+        singleLetter.clear();
 
         if (word.contains(lett)) {
+            success = true;
             int index = 0;
             for (int i = 0; i < word.length(); i++) {
                 char c = word.charAt(i);
@@ -111,15 +101,17 @@ public class LetterController {
                 index++;
             }
         }
+        success = false;
     }
     public void CheckInputSentence(){
 
         String senten = sentence.getText();
-
+        sentence.clear();
         if (word.equals(senten)){
+            success = true;
             setSentence(senten);
         }
-
+        success = false;
     }
 
     public void setLetter(int index, String str) {
@@ -145,7 +137,6 @@ public class LetterController {
         else if (index == 9) {
             tf10.setText(str);
         }
-
     }
 
     public void setSentence(String str) {
@@ -175,21 +166,7 @@ public class LetterController {
         if (chars.length == 10) {
             tf10.setText(chars[9]);
         }
-
-
-    }
-    public void changeScene(ActionEvent event) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("gameView.fxml"));
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setTitle("Wheel of fortune");
-        window.setScene(new Scene(parent, 800, 650));
-        window.show();
     }
 
-    @FXML
-    public void SpinTheWheel(ActionEvent actionEvent) {
-        WheelSection wheelSection = WheelSection.wheelSpin();
-        wheelImageView.setRotate(Integer.parseInt(wheelSection.getName())*15);
-    }
 }
 

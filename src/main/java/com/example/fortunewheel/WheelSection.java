@@ -3,6 +3,7 @@ package com.example.fortunewheel;
 import java.util.Random;
 
 public enum WheelSection {
+
     WHEEL_300_1("1"),
     WHEEL_300_2("2"),
     WHEEL_300_3("3"),
