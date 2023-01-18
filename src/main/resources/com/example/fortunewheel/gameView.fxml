@@ -27,7 +27,7 @@
          </font>
       </Label>
 
-      <ImageView fx:id="wheelImageView" fitHeight="600.0" fitWidth="600.0" layoutX="45.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="wheelImageView" fitHeight="400.0" fitWidth="400.0" layoutX="45.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@wheel.png"/>
          </image>
