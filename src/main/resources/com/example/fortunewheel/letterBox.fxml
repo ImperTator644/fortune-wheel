@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="letterBox" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fortunewheel.LetterController">
+<Pane fx:id="letterBox" prefHeight="433.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fortunewheel.LetterController">
 
     <Label layoutX="511.0" layoutY="37.0" prefHeight="67.0" prefWidth="145.0" text="CATEGORY: ">
         <font>
@@ -93,5 +93,4 @@
     </Button>
 
 
-
-</AnchorPane>
+</Pane>

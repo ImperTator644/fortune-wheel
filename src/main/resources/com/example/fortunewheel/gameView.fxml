@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.layout.VBox?>
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="787.0" prefWidth="1131.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="787.0" prefWidth="1131.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
    <children>
 
       <Label layoutX="54.0" layoutY="37.0" prefHeight="67.0" prefWidth="72.0" text="ROUND: ">
@@ -30,16 +29,16 @@
       </Label>
 
 
-      <Label layoutX="483.0" layoutY="445.0" text="Chat" />
-      <ListView fx:id="chat" layoutX="483.0" layoutY="464.0" prefHeight="200.0" prefWidth="200.0" />
+      <Label layoutX="505.0" layoutY="445.0" text="Chat" />
+      <ListView fx:id="chat" layoutX="505.0" layoutY="464.0" prefHeight="200.0" prefWidth="200.0" />
       <Label layoutX="714.0" layoutY="445.0" text="Players" />
-      <ListView fx:id="players" layoutX="708.0" layoutY="464.0" prefHeight="200.0" prefWidth="200.0" />
+      <ListView fx:id="players" layoutX="714.0" layoutY="464.0" prefHeight="200.0" prefWidth="200.0" />
 
 
-      <VBox>
+      <VBox fx:id="panel" layoutX="25.0" layoutY="-2.0" prefHeight="900.0" prefWidth="400.0">
          <children>
             <fx:include fx:id="letterBox" source="letterBox.fxml" />
-            <fx:include fx:id="wheelBox" source="wheelBox.fxml"/>
+            <fx:include fx:id="wheelBox" source="wheelBox.fxml" />
          </children>
       </VBox>
 
