@@ -20,11 +20,14 @@ public class StartGameController implements MainInterface {
         //FXMLLoader wheelLoader = new FXMLLoader(getClass().getResource(".fxml"));
         FXMLLoader loader = new FXMLLoader(getClass().getResource("gameView.fxml"));
         Parent parent = loader.load();// FXMLLoader.load(getClass().getResource("gameView.fxml"));
+
+        PlayerController playerController = loader.getController();
+
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setTitle("Wheel of fortune");
         window.setScene(new Scene(parent));
         window.show();
-/*        new Thread(() -> {
+        new Thread(() -> {
             Scanner scanner = new Scanner(System.in);
             Socket socket = null;
             try {
@@ -33,15 +36,8 @@ public class StartGameController implements MainInterface {
                 System.out.println("Error creating a socket for client " + e.getMessage());
             }
             Player player = new Player(socket, setUserName(scanner), scanner);
-
-            try {
-                wheelLoader.load();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            WheelController controller = wheelLoader.getController();
-            controller.initData(player);
-        }).start();*/
+            playerController.initData(player);
+        }).start();
 
 
     }

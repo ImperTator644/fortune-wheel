@@ -38,18 +38,18 @@ public class PlayerApplication extends Application implements MainInterface {
     }
 
     public static void main(String[] args) {
-        //launch(args);
-        new Thread(() -> {
+        launch(args);
+/*        new Thread(() -> {
             launch(args);
-/*            Scanner scanner = new Scanner(System.in);
+            Scanner scanner = new Scanner(System.in);
             Socket socket = null;
             try {
                 socket = new Socket(PROXY, PORT_NUMBER);
             } catch (IOException e) {
                 System.out.println("Error creating a socket for client " + e.getMessage());
             }
-            Player player = new Player(socket, setUserName(scanner), scanner);*/
-        }).start();
+            Player player = new Player(socket, setUserName(scanner), scanner);
+        }).start();*/
     }
 
     private static String setUserName(Scanner scanner) {
