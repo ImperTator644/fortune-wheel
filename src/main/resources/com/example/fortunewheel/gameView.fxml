@@ -58,7 +58,7 @@
       </Button>
 
       <Label layoutX="483.0" layoutY="445.0" text="Chat" />
-      <ListView layoutX="483.0" layoutY="464.0" prefHeight="200.0" prefWidth="200.0" />
+      <ListView fx:id="chatListView" layoutX="483.0" layoutY="464.0" prefHeight="200.0" prefWidth="200.0" />
       <Label layoutX="714.0" layoutY="445.0" text="Players" />
       <ListView layoutX="708.0" layoutY="464.0" prefHeight="200.0" prefWidth="200.0" />
 

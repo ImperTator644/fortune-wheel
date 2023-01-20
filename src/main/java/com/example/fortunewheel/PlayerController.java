@@ -2,9 +2,11 @@ package com.example.fortunewheel;
 
 import back.MainInterface;
 import back.handlers.players.Player;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
@@ -35,6 +37,8 @@ public class PlayerController implements MainInterface {
     public TextField tf9;
     @FXML
     public TextField tf10;
+    @FXML
+    public ListView chatListView;
     boolean success = true;
     @FXML
     public TextField sentence;
@@ -42,6 +46,8 @@ public class PlayerController implements MainInterface {
     public TextField singleLetter;
     @FXML
     public Label category;
+    private ObservableList<String> chatMessagesObservableList;
+
 
     private  String[] data = {"MEXICO COUNTRY", "HEDWIG BIRD", "KUAKATA BEACH", "CANADA COUNTRY", "DOCTOR PROFESSION", "FOOTBALL GAME", "TEACHER MENTOR", "LEOPARD ANIMAL", "BICYCLE TRANSPORT", "SALMON FISH", "SPARROW BIRD", "PARROTS BIRD", "EAGLE BIRD", "TRAIN TRANSPORT", "SHIP TRANSPORT", "ENGINEER PROFESSION", "BANKER PROFESSION", "CRICKET GAME"};
     private  int random = new Random().nextInt(data.length);
@@ -73,6 +79,7 @@ public class PlayerController implements MainInterface {
     public void initData(Player player) {
         System.out.println("Received player");
         this.player = player;
+        listenToServer();
     }
 
     public void setHint() {
@@ -195,8 +202,23 @@ public class PlayerController implements MainInterface {
         }
     }
 
-
-
+    private void listenToServer() {
+        new Thread(() -> {
+            while (player.getSocket().isConnected()) {
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                if (!player.messagesReceived.isEmpty()) {
+                    String message = player.readMessageFromBuffer();
+                    System.out.println("Received message from buffer: " + message);
+                    //chatMessagesObservableList.add(message);
+                    //chatListView.setItems(chatMessagesObservableList);
+                }
+            }
+        }).start();
+    }
 
 
     @FXML

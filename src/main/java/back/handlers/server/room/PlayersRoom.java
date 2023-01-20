@@ -30,8 +30,11 @@ public class PlayersRoom implements Runnable {
             System.out.println("Executor started playerHandler " + playerHandler);
         }
         broadcastMessage("Siema witamy w gierce");
-        for (PlayerHandler player : playerHandlers.values()) {
-            broadcastMessage(player.getMessageFromClient());
+        while (true) {
+            broadcastMessage(playerHandlers.get("a").getMessageFromClient());
+            /*for (PlayerHandler player : playerHandlers.values()) {
+                broadcastMessage(player.getMessageFromClient());
+            }*/
         }
     }
 

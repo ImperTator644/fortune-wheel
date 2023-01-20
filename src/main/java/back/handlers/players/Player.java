@@ -6,11 +6,14 @@ import com.example.fortunewheel.PlayerController;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class Player extends Handler {
     private final Scanner scanner;
     private final String userName;
+    public Queue<String> messagesReceived;
 
     public Player(Socket socket, String userName, Scanner scanner) {
         super(socket);
@@ -18,6 +21,7 @@ public class Player extends Handler {
         this.listenForMessage();
         this.userName = userName;
         sendMessage(userName);
+        messagesReceived = new LinkedList<>();
         System.out.println("Connected to server");
     }
 
@@ -34,6 +38,8 @@ public class Player extends Handler {
             while(socket.isConnected()){
                 try {
                     msg = reader.readLine();
+                    messagesReceived.add(msg);
+                    System.out.println("Buffer size: " + messagesReceived.size());
                     System.out.println(msg);
                 } catch (IOException e) {
                     System.out.println("Error receiving message from other clients");
@@ -57,5 +63,9 @@ public class Player extends Handler {
 
     private String createProperMessage(Functions functions, String message){
         return String.join(":", userName, functions.getFunction(), message);
+    }
+
+    public String readMessageFromBuffer() {
+        return messagesReceived.poll();
     }
 }
