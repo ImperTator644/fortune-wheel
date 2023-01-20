@@ -2,6 +2,7 @@ package back.handlers.players;
 
 import back.game.Functions;
 import back.handlers.Handler;
+import com.example.fortunewheel.PlayerController;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -17,7 +18,6 @@ public class Player extends Handler {
         this.listenForMessage();
         this.userName = userName;
         sendMessage(userName);
-        this.test();
         System.out.println("Connected to server");
     }
 

@@ -52,22 +52,27 @@ public class PlayerController implements MainInterface {
     private int letter_size = word.length();
 
 
+
+    @FXML
+    public ImageView wheelImageView;
+    public Player player;
+
     @FXML
     public void initialize() {
-        Scanner scanner = new Scanner(System.in);
+/*        Scanner scanner = new Scanner(System.in);
         Socket socket = null;
         try {
             socket = new Socket(PROXY, PORT_NUMBER);
         } catch (IOException e) {
             System.out.println("Error creating a socket for client " + e.getMessage());
         }
-        player = new Player(socket, setUserName(scanner), scanner);
+        player = new Player(socket, setUserName(scanner), scanner);*/
         setHint();
     }
 
-    private static String setUserName(Scanner scanner) {
-        System.out.println("Podaj imie: ");
-        return scanner.nextLine();
+    public void initData(Player player) {
+        System.out.println("Received player");
+        this.player = player;
     }
 
     public void setHint() {
@@ -195,18 +200,9 @@ public class PlayerController implements MainInterface {
 
 
     @FXML
-    public ImageView wheelImageView;
-    public Player player;
-
-    public void initData(Player player) {
-        this.player = player;
-    }
-
-    @FXML
     public void SpinTheWheel(ActionEvent actionEvent) {
         WheelSection wheelSection = WheelSection.wheelSpin();
         wheelImageView.setRotate(Integer.parseInt(wheelSection.getName())*15);
-        System.out.println("Trying to send message");
         player.sendMessage("MESSAGE");
     }
 }
