@@ -42,7 +42,7 @@ public class Player extends Handler {
         }).start();
     }
 
-    private void sendMessage(String message) {
+    public void sendMessage(String message) {
         try{
             this.writer.write(message);
             this.writer.newLine();

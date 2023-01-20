@@ -1,20 +1,126 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="787.0" prefWidth="1131.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.image.Image?>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="787.0" prefWidth="1131.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fortunewheel.PlayerController">
    <children>
-
-      <Label layoutX="54.0" layoutY="37.0" prefHeight="67.0" prefWidth="72.0" text="ROUND: ">
+      <Label layoutX="136.0" layoutY="37.0" prefHeight="67.0" prefWidth="109.0" style="-fx-border-color: #c4c4c4; -fx-border-width: 2; -fx-border-style: solid; -fx-label-padding: 20 0 20 25;">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="round" layoutX="136.0" layoutY="37.0" prefHeight="67.0" prefWidth="109.0" style="-fx-border-color: #c4c4c4; -fx-border-width: 2; -fx-border-style: solid; -fx-label-padding: 20 0 20 25;">
+      <Label layoutX="336.0" layoutY="37.0" prefHeight="67.0" prefWidth="109.0" style="-fx-border-color: #c4c4c4; -fx-border-width: 2; -fx-border-style: solid; -fx-label-padding: 20 0 20 25;">
          <font>
             <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="category" layoutX="672.0" layoutY="37.0" prefHeight="69.0" prefWidth="230.0" style="-fx-border-color: #c4c4c4; -fx-border-width: 2; -fx-border-style: solid; -fx-padding: 15 0 15 30;">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+
+      <ImageView fx:id="wheelImageView" fitHeight="400.0" fitWidth="400.0" layoutX="45.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@wheel.png"/>
+         </image>
+      </ImageView>
+
+      <Label layoutX="483.0" layoutY="295.0" text="Single letter" />
+      <TextField fx:id="singleLetter" layoutX="483.0" layoutY="316.0" prefHeight="45.0" prefWidth="70.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <Button layoutX="561.0" layoutY="316.0" mnemonicParsing="false" onAction="#CheckInputLetter" prefHeight="45.0" prefWidth="63.0" text="Check">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Button>
+
+      <Label layoutX="483.0" layoutY="364.0" text="Sentence" />
+      <TextField fx:id="sentence" layoutX="483.0" layoutY="387.0" prefHeight="45.0" prefWidth="361.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <Button layoutX="851.0" layoutY="387.0" mnemonicParsing="false" onAction="#CheckInputSentence" prefHeight="45.0" prefWidth="63.0" text="Check">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Button>
+
+      <Label layoutX="483.0" layoutY="445.0" text="Chat" />
+      <ListView layoutX="483.0" layoutY="464.0" prefHeight="200.0" prefWidth="200.0" />
+      <Label layoutX="714.0" layoutY="445.0" text="Players" />
+      <ListView layoutX="708.0" layoutY="464.0" prefHeight="200.0" prefWidth="200.0" />
+
+      <Button layoutX="43.0" layoutY="564.0" mnemonicParsing="false" onAction="#SpinTheWheel" prefHeight="100.0" prefWidth="400.0" text="Click to spin">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Button>
+
+      <TextField fx:id="tf1" editable="false" layoutX="475.0" layoutY="169.0" prefHeight="40.0" prefWidth="40.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="tf2" editable="false" layoutX="518.0" layoutY="169.0" prefHeight="40.0" prefWidth="40.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="tf3" editable="false" layoutX="561.0" layoutY="169.0" prefHeight="40.0" prefWidth="40.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="tf4" editable="false" layoutX="604.0" layoutY="169.0" prefHeight="40.0" prefWidth="40.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="tf5" editable="false" layoutX="647.0" layoutY="169.0" prefHeight="40.0" prefWidth="40.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="tf6" editable="false" layoutX="690.0" layoutY="169.0" prefHeight="40.0" prefWidth="40.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="tf7" editable="false" layoutX="733.0" layoutY="169.0" prefHeight="40.0" prefWidth="40.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="tf8" editable="false" layoutX="776.0" layoutY="169.0" prefHeight="40.0" prefWidth="40.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="tf9" editable="false" layoutX="819.0" layoutY="169.0" prefHeight="40.0" prefWidth="40.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="tf10" editable="false" layoutX="862.0" layoutY="169.0" prefHeight="40.0" prefWidth="40.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <Label layoutX="511.0" layoutY="37.0" prefHeight="67.0" prefWidth="145.0" text="CATEGORY: ">
+         <font>
+            <Font size="24.0" />
          </font>
       </Label>
       <Label layoutX="255.0" layoutY="38.0" prefHeight="67.0" prefWidth="71.0" text="MONEY: ">
@@ -22,26 +128,11 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="money" layoutX="336.0" layoutY="37.0" prefHeight="67.0" prefWidth="109.0" style="-fx-border-color: #c4c4c4; -fx-border-width: 2; -fx-border-style: solid; -fx-label-padding: 20 0 20 25;">
+      <Label layoutX="54.0" layoutY="37.0" prefHeight="67.0" prefWidth="72.0" text="ROUND: ">
          <font>
-         <Font size="18.0" />
-          </font>
+            <Font size="18.0" />
+         </font>
       </Label>
-
-
-      <Label layoutX="505.0" layoutY="445.0" text="Chat" />
-      <ListView fx:id="chat" layoutX="505.0" layoutY="464.0" prefHeight="200.0" prefWidth="200.0" />
-      <Label layoutX="714.0" layoutY="445.0" text="Players" />
-      <ListView fx:id="players" layoutX="714.0" layoutY="464.0" prefHeight="200.0" prefWidth="200.0" />
-
-
-      <VBox fx:id="panel" layoutX="25.0" layoutY="-2.0" prefHeight="900.0" prefWidth="400.0">
-         <children>
-            <fx:include fx:id="letterBox" source="letterBox.fxml" />
-            <fx:include fx:id="wheelBox" source="wheelBox.fxml" />
-         </children>
-      </VBox>
-
 
 
    </children>
