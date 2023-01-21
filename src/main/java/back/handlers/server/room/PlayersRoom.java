@@ -1,5 +1,8 @@
 package back.handlers.server.room;
 
+import back.game.Functions;
+import com.example.fortunewheel.Message;
+
 import java.net.Socket;
 import java.util.List;
 import java.util.Map;
@@ -29,9 +32,16 @@ public class PlayersRoom implements Runnable {
             executorService.execute(playerHandler);
             System.out.println("Executor started playerHandler " + playerHandler);
         }
-        broadcastMessage("Siema witamy w gierce");
+        Message messageToSend = new Message.Builder()
+                        .setUsername("server")
+                        .setFunction(Functions.INFO)
+                        .setMessage("Siema witamy w gierce")
+                        .build();
+        broadcastMessage(messageToSend.toString());
         while (true) {
-            broadcastMessage(playerHandlers.get("a").getMessageFromClient());
+            Message messageReceived = Message.convertStringToMessage(playerHandlers.get("a").getMessageFromClient());
+            ServerMessageProcessor.processMessage(messageReceived, playerHandlers);
+            //broadcastMessage(playerHandlers.get("a").getMessageFromClient());
             /*for (PlayerHandler player : playerHandlers.values()) {
                 broadcastMessage(player.getMessageFromClient());
             }*/

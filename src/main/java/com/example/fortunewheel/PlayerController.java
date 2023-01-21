@@ -1,6 +1,7 @@
 package com.example.fortunewheel;
 
 import back.MainInterface;
+import back.game.Functions;
 import back.handlers.players.Player;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,10 +11,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
-import java.io.IOException;
-import java.net.Socket;
 import java.util.Random;
-import java.util.Scanner;
 
 public class PlayerController implements MainInterface {
 
@@ -65,21 +63,14 @@ public class PlayerController implements MainInterface {
 
     @FXML
     public void initialize() {
-/*        Scanner scanner = new Scanner(System.in);
-        Socket socket = null;
-        try {
-            socket = new Socket(PROXY, PORT_NUMBER);
-        } catch (IOException e) {
-            System.out.println("Error creating a socket for client " + e.getMessage());
-        }
-        player = new Player(socket, setUserName(scanner), scanner);*/
         setHint();
     }
 
     public void initData(Player player) {
         System.out.println("Received player");
         this.player = player;
-        listenToServer();
+        ServerListener.listenToServer(player, this);
+        //listenToServer();
     }
 
     public void setHint() {
@@ -202,29 +193,15 @@ public class PlayerController implements MainInterface {
         }
     }
 
-    private void listenToServer() {
-        new Thread(() -> {
-            while (player.getSocket().isConnected()) {
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-                if (!player.messagesReceived.isEmpty()) {
-                    String message = player.readMessageFromBuffer();
-                    System.out.println("Received message from buffer: " + message);
-                    //chatMessagesObservableList.add(message);
-                    //chatListView.setItems(chatMessagesObservableList);
-                }
-            }
-        }).start();
-    }
-
-
     @FXML
     public void SpinTheWheel(ActionEvent actionEvent) {
-        WheelSection wheelSection = WheelSection.wheelSpin();
+        PlayerMessageSender.sendMessage(player, Functions.SPIN, "spin the wheel for me");
+        //WheelSection wheelSection = WheelSection.wheelSpin();
+        //wheelImageView.setRotate(Integer.parseInt(wheelSection.getName())*15);
+        //player.sendMessage("MESSAGE");
+    }
+
+    public void changeWheelView(WheelSection wheelSection) {
         wheelImageView.setRotate(Integer.parseInt(wheelSection.getName())*15);
-        player.sendMessage("MESSAGE");
     }
 }

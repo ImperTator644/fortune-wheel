@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class Player extends Handler {
     private final Scanner scanner;
-    private final String userName;
+    public final String userName;
     public Queue<String> messagesReceived;
 
     public Player(Socket socket, String userName, Scanner scanner) {
