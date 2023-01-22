@@ -23,4 +23,13 @@ public enum Categories {
     public String getCategory() {
         return category;
     }
+
+    public static String[] getAllCategories(){
+        Categories[] values = values();
+        String[] categories = new String[values.length];
+        for (int i = 0;i< values.length;i++){
+            categories[i] = values[i].getCategory();
+        }
+        return categories;
+    }
 }

@@ -62,7 +62,7 @@
       <Label layoutX="714.0" layoutY="445.0" text="Players" />
       <ListView layoutX="708.0" layoutY="464.0" prefHeight="200.0" prefWidth="200.0" />
 
-      <Button layoutX="43.0" layoutY="564.0" mnemonicParsing="false" onAction="#SpinTheWheel" prefHeight="100.0" prefWidth="400.0" text="Click to spin">
+      <Button fx:id="spinTheWheelButton" layoutX="43.0" layoutY="564.0" mnemonicParsing="false" onAction="#SpinTheWheel" prefHeight="100.0" prefWidth="400.0" text="Click to spin">
          <font>
             <Font size="36.0" />
          </font>

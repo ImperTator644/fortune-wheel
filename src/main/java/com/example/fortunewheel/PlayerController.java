@@ -6,6 +6,7 @@ import back.handlers.players.Player;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -43,27 +44,20 @@ public class PlayerController implements MainInterface {
     @FXML
     public TextField singleLetter;
     @FXML
+    public Button spinTheWheelButton;
+    @FXML
     public Label category;
     private ObservableList<String> chatMessagesObservableList;
-
-
-    private  String[] data = {"MEXICO COUNTRY", "HEDWIG BIRD", "KUAKATA BEACH", "CANADA COUNTRY", "DOCTOR PROFESSION", "FOOTBALL GAME", "TEACHER MENTOR", "LEOPARD ANIMAL", "BICYCLE TRANSPORT", "SALMON FISH", "SPARROW BIRD", "PARROTS BIRD", "EAGLE BIRD", "TRAIN TRANSPORT", "SHIP TRANSPORT", "ENGINEER PROFESSION", "BANKER PROFESSION", "CRICKET GAME"};
-    private  int random = new Random().nextInt(data.length);
-    private  String word_hint = data[random];
-    private  String[] split = word_hint.split(" ", 2);
-    public  String word = split[0];
-    private String categ = split[1];
-    private int letter_size = word.length();
-
-
 
     @FXML
     public ImageView wheelImageView;
     public Player player;
 
+    private String currentWord;
+    private String currentCategory;
+
     @FXML
     public void initialize() {
-        setHint();
     }
 
     public void initData(Player player) {
@@ -73,8 +67,16 @@ public class PlayerController implements MainInterface {
         //listenToServer();
     }
 
-    public void setHint() {
-        category.setText(categ);
+    public void setupRound(String wordAndCategory){
+        String[] split = wordAndCategory.split(" ", 2);
+        currentWord = split[0];
+        currentCategory = split[1];
+        setRoundCategoryAndKey();
+    }
+
+    private void setRoundCategoryAndKey() {
+        category.setText(currentCategory);
+        int letter_size = currentWord.length();
         if (letter_size == 9) {
             tf10.setVisible(false);
         }
@@ -111,15 +113,14 @@ public class PlayerController implements MainInterface {
     }
 
     public void CheckInputLetter() {
-
         String lett = singleLetter.getText();
         singleLetter.clear();
 
-        if (word.contains(lett)) {
+        if (currentWord.contains(lett)) {
             success = true;
             int index = 0;
-            for (int i = 0; i < word.length(); i++) {
-                char c = word.charAt(i);
+            for (int i = 0; i < currentWord.length(); i++) {
+                char c = currentWord.charAt(i);
                 if (String.valueOf(c).equals(lett)) {
                     setLetter(index, Character.toString(c));
                 }
@@ -129,10 +130,9 @@ public class PlayerController implements MainInterface {
         success = false;
     }
     public void CheckInputSentence(){
-
         String senten = sentence.getText();
         sentence.clear();
-        if (word.equals(senten)){
+        if (currentWord.equals(senten)){
             success = true;
             setSentence(senten);
         }
@@ -140,7 +140,6 @@ public class PlayerController implements MainInterface {
     }
 
     public void setLetter(int index, String str) {
-
         if (index == 0)
             tf1.setText(str);
         else if (index == 1)
@@ -203,5 +202,17 @@ public class PlayerController implements MainInterface {
 
     public void changeWheelView(WheelSection wheelSection) {
         wheelImageView.setRotate(Integer.parseInt(wheelSection.getName())*15);
+    }
+
+    public void blockFields(){
+        singleLetter.setEditable(false);
+        sentence.setEditable(false);
+        spinTheWheelButton.setVisible(false);
+    }
+
+    public void unblockFields(){
+        singleLetter.setEditable(true);
+        sentence.setEditable(true);
+        spinTheWheelButton.setVisible(true);
     }
 }
