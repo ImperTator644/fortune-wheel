@@ -3,6 +3,9 @@ package back.game;
 import back.handlers.server.room.PlayerHandler;
 import back.handlers.server.room.ServerMessageProcessor;
 import com.example.fortunewheel.Message;
+import com.example.fortunewheel.PlayerController;
+import com.example.fortunewheel.PlayerMessageProcessor;
+import javafx.application.Platform;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +34,9 @@ public class GameFlow {
             blockAndUnblockPlayers(players, currentPlayer);
             sendCurrentPlayerInfo(players, currentPlayer.getPlayerModel().getUsername());
             Message messageReceived = Message.convertStringToMessage(currentPlayer.getMessageFromClient());
+
+            addMessageToChat(currentPlayer.getPlayerModel().getUsername(), messageReceived.getFunction(), players);
+
             ServerMessageProcessor.processMessageToBroadCast(messageReceived, players);
             iterator = iterator == 2 ? 0 : iterator + 1;
             currentPlayer = playerHandlers.get(iterator);
@@ -84,5 +90,29 @@ public class GameFlow {
                 System.out.println("Blocked player " + playerHandler);
             }
         }
+    }
+
+    private void addMessageToChat(String username, Functions function, Map<String, PlayerHandler> players){
+        String message = "";
+        switch (function.getFunction()){
+            case "SPIN": {
+                message = "zakrecil kolem";
+                break;
+            }
+            case "LETTER": {
+                message = "probuje odgadnac litere";
+                break;
+            }
+            case "SENTENCE": {
+                message = "probuje odgadnac haslo";
+                break;
+            }
+        }
+        Message messageToSend = new Message.Builder()
+                .setUsername("server")
+                .setFunction(Functions.CHAT)
+                .setMessage(username + " " + message)
+                .build();
+        ServerMessageProcessor.processMessageToBroadCast(messageToSend, players);
     }
 }

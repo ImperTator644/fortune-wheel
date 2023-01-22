@@ -3,7 +3,6 @@ package com.example.fortunewheel;
 import back.MainInterface;
 import back.game.Functions;
 import back.handlers.players.Player;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -56,7 +55,7 @@ public class PlayerController implements MainInterface {
     public Button sentenceButton;
     @FXML
     public Label category;
-    private ObservableList<String> chatMessagesObservableList;
+
 
     @FXML
     public ImageView wheelImageView;
@@ -232,5 +231,9 @@ public class PlayerController implements MainInterface {
         spinTheWheelButton.setVisible(true);
         sentenceButton.setVisible(true);
         singleLetterButton.setVisible(true);
+    }
+
+    public void changeChat(String message){
+        chatListView.getItems().add(message);
     }
 }
