@@ -11,25 +11,16 @@ import java.util.Queue;
 import java.util.Scanner;
 
 public class Player extends Handler {
-    private final Scanner scanner;
     public final String userName;
     public Queue<String> messagesReceived;
 
-    public Player(Socket socket, String userName, Scanner scanner) {
+    public Player(Socket socket, String userName) {
         super(socket);
-        this.scanner = scanner;
         this.listenForMessage();
         this.userName = userName;
         sendMessage(userName);
         messagesReceived = new LinkedList<>();
         System.out.println("Connected to server");
-    }
-
-    private void test(){
-        while(socket.isConnected()){
-            String message = scanner.nextLine();
-            sendMessage(createProperMessage(Functions.LETTER, message));
-        }
     }
 
     private void listenForMessage(){

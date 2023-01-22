@@ -15,7 +15,7 @@ public class PlayerMain implements MainInterface{
         } catch (IOException e) {
             System.out.println("Error creating a socket for client " + e.getMessage());
         }
-        Player player = new Player(socket, setUserName(scanner), scanner);
+        Player player = new Player(socket, setUserName(scanner));
     }
 
     private static String setUserName(Scanner scanner) {

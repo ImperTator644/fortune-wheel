@@ -29,15 +29,15 @@ public class StartGameController implements MainInterface {
             window.setTitle("Wheel of fortune");
             window.setScene(new Scene(parent));
             window.show();
+
             new Thread(() -> {
-                Scanner scanner = new Scanner(System.in);
                 Socket socket = null;
                 try {
                     socket = new Socket(PROXY, PORT_NUMBER);
                 } catch (IOException e) {
                     System.out.println("Error creating a socket for client " + e.getMessage());
                 }
-                Player player = new Player(socket, nameTextField.getText(), scanner);
+                Player player = new Player(socket, nameTextField.getText());
                 playerController.initData(player);
             }).start();
         }
