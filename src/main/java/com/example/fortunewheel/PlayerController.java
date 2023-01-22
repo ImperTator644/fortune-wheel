@@ -46,6 +46,10 @@ public class PlayerController implements MainInterface {
     @FXML
     public Button spinTheWheelButton;
     @FXML
+    public Button singleLetterButton;
+    @FXML
+    public Button sentenceButton;
+    @FXML
     public Label category;
     private ObservableList<String> chatMessagesObservableList;
 
@@ -63,6 +67,7 @@ public class PlayerController implements MainInterface {
     public void initData(Player player) {
         System.out.println("Received player");
         this.player = player;
+        this.blockFields();
         ServerListener.listenToServer(player, this);
         //listenToServer();
     }
@@ -208,11 +213,15 @@ public class PlayerController implements MainInterface {
         singleLetter.setEditable(false);
         sentence.setEditable(false);
         spinTheWheelButton.setVisible(false);
+        sentenceButton.setVisible(false);
+        singleLetterButton.setVisible(false);
     }
 
     public void unblockFields(){
         singleLetter.setEditable(true);
         sentence.setEditable(true);
         spinTheWheelButton.setVisible(true);
+        sentenceButton.setVisible(true);
+        singleLetterButton.setVisible(true);
     }
 }

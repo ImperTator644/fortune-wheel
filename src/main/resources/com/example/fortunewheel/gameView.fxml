@@ -39,7 +39,7 @@
             <Font size="18.0" />
          </font>
       </TextField>
-      <Button layoutX="561.0" layoutY="316.0" mnemonicParsing="false" onAction="#CheckInputLetter" prefHeight="45.0" prefWidth="63.0" text="Check">
+      <Button fx:id="singleLetterButton" layoutX="561.0" layoutY="316.0" mnemonicParsing="false" onAction="#CheckInputLetter" prefHeight="45.0" prefWidth="63.0" text="Check">
          <font>
             <Font size="11.0" />
          </font>
@@ -51,7 +51,7 @@
             <Font size="18.0" />
          </font>
       </TextField>
-      <Button layoutX="851.0" layoutY="387.0" mnemonicParsing="false" onAction="#CheckInputSentence" prefHeight="45.0" prefWidth="63.0" text="Check">
+      <Button fx:id="sentenceButton" layoutX="851.0" layoutY="387.0" mnemonicParsing="false" onAction="#CheckInputSentence" prefHeight="45.0" prefWidth="63.0" text="Check">
          <font>
             <Font size="11.0" />
          </font>
