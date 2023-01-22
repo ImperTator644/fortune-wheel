@@ -40,11 +40,6 @@ public class PlayersRoom implements Runnable {
             sendRoundSetup(round);
             gameFlow.playRound(round, playerHandlers);
         }
-
-        while (true) {
-            Message messageReceived = Message.convertStringToMessage(playerHandlers.get("a").getMessageFromClient());
-            ServerMessageProcessor.processMessageToBroadCast(messageReceived, playerHandlers);
-        }
     }
 
     private void sendRoundSetup(Round round) {
