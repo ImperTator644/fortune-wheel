@@ -44,6 +44,11 @@ public class PlayerController implements MainInterface {
     @FXML
     public TextField singleLetter;
     @FXML
+    public Label roundNumber;
+    @FXML
+    public Label roundPlayer;
+
+    @FXML
     public Button spinTheWheelButton;
     @FXML
     public Button singleLetterButton;
@@ -200,9 +205,13 @@ public class PlayerController implements MainInterface {
     @FXML
     public void SpinTheWheel(ActionEvent actionEvent) {
         PlayerMessageSender.sendMessage(player, Functions.SPIN, "spin the wheel for me");
-        //WheelSection wheelSection = WheelSection.wheelSpin();
-        //wheelImageView.setRotate(Integer.parseInt(wheelSection.getName())*15);
-        //player.sendMessage("MESSAGE");
+    }
+
+    public void setRoundNumber(String roundNumber){
+        this.roundNumber.setText("RUNDA: " + roundNumber);
+    }
+    public void setCurrentPlayer(String currentPlayerName){
+        this.roundPlayer.setText("Tura gracza: " + currentPlayerName);
     }
 
     public void changeWheelView(WheelSection wheelSection) {
