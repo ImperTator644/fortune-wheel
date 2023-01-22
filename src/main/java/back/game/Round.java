@@ -1,14 +1,18 @@
 package back.game;
 
+import back.database.Categories;
+import back.database.DBPuzzels;
+
 import java.util.Random;
 
 public class Round {
     private final String wordAndCategory;
 
     public Round() {
-        String[] data = new String[]{"MEXICO COUNTRY", "HEDWIG BIRD", "KUAKATA BEACH", "CANADA COUNTRY", "DOCTOR PROFESSION", "FOOTBALL GAME", "TEACHER MENTOR", "LEOPARD ANIMAL", "BICYCLE TRANSPORT", "SALMON FISH", "SPARROW BIRD", "PARROTS BIRD", "EAGLE BIRD", "TRAIN TRANSPORT", "SHIP TRANSPORT", "ENGINEER PROFESSION", "BANKER PROFESSION", "CRICKET GAME"};
+        String[] data = Categories.getAllCategories();
         int random = new Random().nextInt(data.length);
-        this.wordAndCategory = data[random];
+        this.wordAndCategory = DBPuzzels.getWordPuzzles(data[random]) + " " + data[random];
+        System.out.println(wordAndCategory);
     }
 
     public String getWordAndCategory() {
