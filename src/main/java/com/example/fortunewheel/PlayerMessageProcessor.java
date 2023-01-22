@@ -13,9 +13,7 @@ public class PlayerMessageProcessor {
             }
             case BLOCK -> controller.blockFields();
             case UNBLOCK -> controller.unblockFields();
-            case SETUP_ROUND -> {
-                Platform.runLater(()->controller.setupRound(message.getMessage()));
-            }
+            case SETUP_ROUND -> Platform.runLater(()->controller.setupRound(message.getMessage()));
         }
     }
 }

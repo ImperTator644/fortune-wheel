@@ -19,6 +19,7 @@ public class ServerMessageProcessor {
                         .build();
                 broadcastMessage(messageToSend.toString(), playerHandlers);
             }
+            case SETUP_ROUND -> broadcastMessage(message.toString(), playerHandlers);
         }
     }
 
