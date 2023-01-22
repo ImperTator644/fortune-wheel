@@ -7,13 +7,11 @@ import java.util.Random;
 
 public class Round {
     private final String wordAndCategory;
-    private final DBPuzzels puzzels;
 
     public Round() {
-        puzzels = DBPuzzels.getInstance();
         String[] data = Categories.getAllCategories();
         int random = new Random().nextInt(data.length);
-        this.wordAndCategory = puzzels.getWordPuzzles(data[random]) + " " + data[random];
+        this.wordAndCategory = DBPuzzels.getWordPuzzles(data[random]) + " " + data[random];
         System.out.println(wordAndCategory);
     }
 

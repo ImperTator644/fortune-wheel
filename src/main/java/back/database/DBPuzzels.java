@@ -40,7 +40,6 @@ public class DBPuzzels {
                 for (int i = 1; i <= random; i++) {
                     resultSet.next();
                 }
-                System.out.println(resultSet.getString(3));
                 return resultSet.getString(3);
             }
 

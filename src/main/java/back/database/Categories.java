@@ -7,7 +7,6 @@ public enum Categories {
     ZAWOD("ZAWOD"),
     SPORT("SPORT"),
     TRANSPORT("TRANSPORT"),
-    AKTOR("AKTOR"),
     ELEKTRONIKA("ELEKTRONIKA"),
     EPOKA("EPOKA"),
     FILM("FILM"),
