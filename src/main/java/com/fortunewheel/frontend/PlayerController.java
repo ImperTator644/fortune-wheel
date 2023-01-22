@@ -56,7 +56,7 @@ public class PlayerController implements MainInterface {
     public Button sentenceButton;
     @FXML
     public Label category;
-    private ObservableList<String> chatMessagesObservableList;
+
 
     @FXML
     public ImageView wheelImageView;
@@ -232,5 +232,9 @@ public class PlayerController implements MainInterface {
         spinTheWheelButton.setVisible(true);
         sentenceButton.setVisible(true);
         singleLetterButton.setVisible(true);
+    }
+
+    public void changeChat(String message){
+        chatListView.getItems().add(message);
     }
 }
