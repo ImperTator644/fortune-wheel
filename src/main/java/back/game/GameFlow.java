@@ -26,13 +26,37 @@ public class GameFlow {
         List<PlayerHandler> playerHandlers = new ArrayList<>(players.values());
         PlayerHandler currentPlayer = playerHandlers.get(0);
         int iterator = 0;
+        sendRoundInfo(players, iterator+1);
         while(true){
             blockAndUnblockPlayers(players, currentPlayer);
+            sendCurrentPlayerInfo(players, currentPlayer.getPlayerModel().getUsername());
             Message messageReceived = Message.convertStringToMessage(currentPlayer.getMessageFromClient());
             ServerMessageProcessor.processMessageToBroadCast(messageReceived, players);
             iterator = iterator == 2 ? 0 : iterator + 1;
             currentPlayer = playerHandlers.get(iterator);
         }
+    }
+
+    public void sendRoundInfo(Map<String, PlayerHandler> players, int roundNumber){
+        Message messageToSend = new Message.Builder()
+                .setUsername("server")
+                .setFunction(Functions.ROUND_NUMBER)
+                .setMessage(Integer.toString(roundNumber))
+                .build();
+
+        ServerMessageProcessor.processMessageToBroadCast(messageToSend, players);
+        System.out.println("Sent info about round =  " + roundNumber);
+    }
+
+    public void sendCurrentPlayerInfo(Map<String, PlayerHandler> players, String currentPlayerName){
+        Message messageToSend = new Message.Builder()
+                .setUsername("server")
+                .setFunction(Functions.ROUND_PLAYER)
+                .setMessage(currentPlayerName)
+                .build();
+
+        ServerMessageProcessor.processMessageToBroadCast(messageToSend, players);
+        System.out.println("Sent info about current player =  " + currentPlayerName);
     }
 
     private void blockAndUnblockPlayers(Map<String, PlayerHandler> players, PlayerHandler currentPlayer){

@@ -4,24 +4,19 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.image.Image?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="787.0" prefWidth="1131.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fortunewheel.PlayerController">
    <children>
-      <Label layoutX="136.0" layoutY="37.0" prefHeight="67.0" prefWidth="109.0" style="-fx-border-color: #c4c4c4; -fx-border-width: 2; -fx-border-style: solid; -fx-label-padding: 20 0 20 25;">
+      <Label contentDisplay="CENTER" layoutX="336.0" layoutY="37.0" prefHeight="67.0" prefWidth="109.0" style="-fx-border-color: #c4c4c4; -fx-border-width: 2; -fx-border-style: solid; -fx-label-padding: 20 0 20 25;">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="336.0" layoutY="37.0" prefHeight="67.0" prefWidth="109.0" style="-fx-border-color: #c4c4c4; -fx-border-width: 2; -fx-border-style: solid; -fx-label-padding: 20 0 20 25;">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="category" layoutX="672.0" layoutY="37.0" prefHeight="69.0" prefWidth="230.0" style="-fx-border-color: #c4c4c4; -fx-border-width: 2; -fx-border-style: solid; -fx-padding: 15 0 15 30;">
+      <Label fx:id="category" contentDisplay="CENTER" layoutX="672.0" layoutY="37.0" prefHeight="69.0" prefWidth="230.0" style="-fx-border-color: #c4c4c4; -fx-border-width: 2; -fx-border-style: solid; -fx-padding: 15 0 15 30;" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -29,12 +24,12 @@
 
       <ImageView fx:id="wheelImageView" fitHeight="400.0" fitWidth="400.0" layoutX="45.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@wheel.png"/>
+            <Image url="@wheel.png" />
          </image>
       </ImageView>
 
       <Label layoutX="483.0" layoutY="295.0" text="Single letter" />
-      <TextField fx:id="singleLetter" layoutX="483.0" layoutY="316.0" prefHeight="45.0" prefWidth="70.0">
+      <TextField fx:id="singleLetter" alignment="CENTER" layoutX="483.0" layoutY="316.0" prefHeight="45.0" prefWidth="70.0">
          <font>
             <Font size="18.0" />
          </font>
@@ -128,12 +123,14 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="54.0" layoutY="37.0" prefHeight="67.0" prefWidth="72.0" text="ROUND: ">
+      <Label fx:id="roundNumber" alignment="CENTER" contentDisplay="CENTER" layoutX="60.0" layoutY="38.0" prefHeight="31.0" prefWidth="145.0" text="RUNDA" textAlignment="CENTER">
          <font>
             <Font size="18.0" />
-         </font>
-      </Label>
-
+         </font></Label>
+      <Label fx:id="roundPlayer" alignment="CENTER" layoutX="60.0" layoutY="72.0" prefHeight="31.0" prefWidth="145.0" text="Tura gracza">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
 
    </children>
 </Pane>

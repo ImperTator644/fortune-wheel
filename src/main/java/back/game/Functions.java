@@ -7,6 +7,8 @@ public enum Functions {
     BLOCK("BLOCK"),
     UNBLOCK("UNBLOCK"),
     SETUP_ROUND("SETUP_ROUND"),
+    ROUND_NUMBER("ROUND_NUMBER"),
+    ROUND_PLAYER("ROUND_PLAYER"),
     INFO("INFO");
 
     private final String function;
