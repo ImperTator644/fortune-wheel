@@ -5,6 +5,8 @@ module com.example.fortunewheel {
     requires java.sql;
     requires mysql.connector.java;
 
-    opens com.example.fortunewheel to javafx.fxml;
-    exports com.example.fortunewheel;
+    opens com.fortunewheel.frontend to javafx.fxml;
+    exports com.fortunewheel.frontend;
+    exports com.fortunewheel.backend.connection;
+    opens com.fortunewheel.backend.connection to javafx.fxml;
 }
