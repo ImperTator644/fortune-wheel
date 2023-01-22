@@ -7,17 +7,19 @@ import com.fortunewheel.frontend.WheelSection;
 import java.util.Map;
 
 public class ServerMessageProcessor {
-    public static void processMessageToBroadCast(Message message, Map<String, PlayerHandler> playerHandlers) {
+    public static void processMessageToBroadCast(Message message, Map<String, PlayerHandler> playerHandlers, GameFlow gameFlow) {
         Functions function = message.getFunction();
         switch (function) {
             case SPIN -> {
-                String wheelSection = WheelSection.wheelSpin().toString();
+                WheelSection wheelSection = WheelSection.wheelSpin();
+                String wheelSectionString = wheelSection.toString();
                 Message messageToSend = new Message.Builder()
                         .setUsername("server")
                         .setFunction(Functions.SPIN)
-                        .setMessage(wheelSection)
+                        .setMessage(wheelSectionString)
                         .build();
                 broadcastMessage(messageToSend.toString(), playerHandlers);
+                gameFlow.setCurrentSection(wheelSection);
             }
             case    SETUP_ROUND,
                     ROUND_NUMBER,
@@ -30,9 +32,10 @@ public class ServerMessageProcessor {
     }
 
     public static void processMessageToOnePlayer(Message message, PlayerHandler playerHandler) {
+        //TODO obsluzenie free spina, dla tego samego gracza
         Functions function = message.getFunction();
         switch (function) {
-            case BLOCK, UNBLOCK -> sendMessageToOnePlayer(message.toString(), playerHandler);
+            case BLOCK, UNBLOCK, UNBLOCK_SPIN -> sendMessageToOnePlayer(message.toString(), playerHandler);
         }
     }
 

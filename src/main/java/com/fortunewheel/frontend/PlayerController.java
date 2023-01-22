@@ -248,9 +248,17 @@ public class PlayerController implements MainInterface {
     public void unblockFields() {
         singleLetter.setEditable(true);
         word.setEditable(true);
-        spinTheWheelButton.setVisible(true);
+        spinTheWheelButton.setVisible(false);
         sentenceButton.setVisible(true);
         singleLetterButton.setVisible(true);
+    }
+
+    public void unblockSpin(){
+        singleLetter.setEditable(false);
+        sentence.setEditable(false);
+        spinTheWheelButton.setVisible(true);
+        sentenceButton.setVisible(false);
+        singleLetterButton.setVisible(false);
     }
 
     public void changeChat(String message) {

@@ -37,6 +37,7 @@ public class PlayersRoom implements Runnable {
         setup();
 
         for(Round round : rounds){
+            playerHandlers.values().forEach(p -> p.getPlayerModel().resetRoundMoney());
             sendRoundSetup(round);
             gameFlow.playRound(round, playerHandlers);
         }
@@ -49,7 +50,7 @@ public class PlayersRoom implements Runnable {
                 .setMessage(round.getWordAndCategory())
                 .build();
 
-        ServerMessageProcessor.processMessageToBroadCast(messageToSend, playerHandlers);
+        ServerMessageProcessor.processMessageToBroadCast(messageToSend, playerHandlers, gameFlow);
 
         System.out.println("Sent message about round " + round);
     }
@@ -64,7 +65,7 @@ public class PlayersRoom implements Runnable {
                         .setFunction(Functions.INFO)
                         .setMessage("Siema witamy w gierce")
                         .build();
-        ServerMessageProcessor.processMessageToBroadCast(messageToSend, playerHandlers);
+        ServerMessageProcessor.processMessageToBroadCast(messageToSend, playerHandlers, gameFlow);
 
         for(int i=0;i<rounds.length;i++){
             rounds[i] = new Round();
