@@ -69,4 +69,14 @@ public class Message {
             return new Message(username, function, message);
         }
     }
+
+    public static String getMessageToChat(Message message){
+        if (message.getFunction() == Functions.INFO){
+            return message.getMessage();
+        }
+        if (message.getFunction() == Functions.SPIN){
+            return "spin the wheel";
+        }
+        else return " chuj";
+    }
 }

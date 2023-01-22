@@ -1,8 +1,10 @@
 package com.example.fortunewheel;
 
 import back.handlers.players.Player;
+import javafx.application.Platform;
 
 public class ServerListener {
+
 
     public static void listenToServer(Player player, PlayerController controller) {
         new Thread(() -> {
@@ -17,8 +19,6 @@ public class ServerListener {
                     System.out.println("Received message from buffer: " + message);
                     Message receivedMessage = Message.convertStringToMessage(message);
                     PlayerMessageProcessor.processMessage(receivedMessage, controller);
-                    //chatMessagesObservableList.add(message);
-                    //chatListView.setItems(chatMessagesObservableList);
                 }
             }
         }).start();

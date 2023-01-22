@@ -3,6 +3,7 @@ package back.handlers.server.room;
 import back.game.Functions;
 import com.example.fortunewheel.Message;
 import com.example.fortunewheel.WheelSection;
+import javafx.application.Platform;
 
 import java.util.Map;
 
@@ -22,6 +23,9 @@ public class ServerMessageProcessor {
             case    SETUP_ROUND,
                     ROUND_NUMBER,
                     ROUND_PLAYER -> broadcastMessage(message.toString(), playerHandlers);
+            case CHAT -> {
+                broadcastMessage(message.toString(), playerHandlers);
+            }
         }
     }
 
