@@ -7,7 +7,7 @@ import com.example.fortunewheel.WheelSection;
 import java.util.Map;
 
 public class ServerMessageProcessor {
-    public static void processMessage (Message message, Map<String, PlayerHandler> playerHandlers) {
+    public static void processMessageToBroadCast(Message message, Map<String, PlayerHandler> playerHandlers) {
         Functions function = message.getFunction();
         switch (function) {
             case SPIN -> {
@@ -22,9 +22,20 @@ public class ServerMessageProcessor {
         }
     }
 
+    public static void processMessageToOnePlayer(Message message, PlayerHandler playerHandler) {
+        Functions function = message.getFunction();
+        switch (function) {
+            case BLOCK, UNBLOCK -> sendMessageToOnePlayer(message.toString(), playerHandler);
+        }
+    }
+
     private static void broadcastMessage(String messageToSend, Map<String, PlayerHandler> playerHandlers) {
         for (PlayerHandler player : playerHandlers.values()) {
             player.sendMessageToClient(messageToSend);
         }
+    }
+
+    private static void sendMessageToOnePlayer(String messageToSend, PlayerHandler playerHandler){
+        playerHandler.sendMessageToClient(messageToSend);
     }
 }
