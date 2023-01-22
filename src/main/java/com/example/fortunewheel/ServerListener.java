@@ -8,7 +8,7 @@ public class ServerListener {
         new Thread(() -> {
             while (player.getSocket().isConnected()) {
                 try {
-                    Thread.sleep(500);
+                    Thread.sleep(100);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
