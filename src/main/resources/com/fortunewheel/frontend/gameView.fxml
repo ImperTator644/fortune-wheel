@@ -14,9 +14,9 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="936.0" style="-fx-background-color: linear-gradient(from 55px 50px to 450px 400px, #f2493a, #32cd32);;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fortunewheel.frontend.PlayerController">
    <children>
-      <Label contentDisplay="CENTER" layoutX="336.0" layoutY="37.0" prefHeight="67.0" prefWidth="130.0" style="-fx-border-color: #3b3737; -fx-border-width: 2; -fx-border-style: solid; -fx-label-padding: 20 0 20 25;" textAlignment="CENTER">
+      <Label contentDisplay="CENTER" layoutX="336.0" layoutY="37.0" prefHeight="67.0" prefWidth="130.0" style="-fx-border-color: #3b3737; -fx-border-width: 2; -fx-border-style: solid; -fx-label-padding: 20 0 20 25;" text="0" textAlignment="CENTER">
          <font>
-            <Font size="18.0" />
+            <Font name="Arial" size="21.0" />
          </font>
       </Label>
       <Label fx:id="category" contentDisplay="CENTER" layoutX="672.0" layoutY="37.0" prefHeight="69.0" prefWidth="230.0" style="-fx-border-color: #3b3737; -fx-border-width: 2; -fx-border-style: solid; -fx-padding: 15 0 15 30;" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
@@ -153,11 +153,11 @@
             <Font name="Arial Black" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="roundNumber" alignment="CENTER" contentDisplay="CENTER" layoutX="48.0" layoutY="38.0" prefHeight="31.0" prefWidth="145.0" text="RUNDA" textAlignment="CENTER">
+      <Label fx:id="roundNumber" alignment="CENTER" contentDisplay="CENTER" layoutX="48.0" layoutY="38.0" prefHeight="31.0" prefWidth="145.0" text="Oczekiwanie" textAlignment="CENTER">
          <font>
             <Font name="Arial Black" size="18.0" />
          </font></Label>
-      <Label fx:id="roundPlayer" alignment="CENTER" layoutX="24.0" layoutY="72.0" prefHeight="31.0" prefWidth="200.0" text="Tura gracza">
+      <Label fx:id="roundPlayer" alignment="CENTER" layoutX="21.0" layoutY="72.0" prefHeight="31.0" prefWidth="200.0" text="na graczy">
          <font>
             <Font name="Arial" size="19.0" />
          </font></Label>
