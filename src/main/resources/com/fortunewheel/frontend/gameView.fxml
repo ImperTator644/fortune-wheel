@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="936.0" style="-fx-background-color: #43ab2e;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fortunewheel.frontend.PlayerController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="936.0" style="-fx-background-color: linear-gradient(from 55px 50px to 450px 400px, #f2493a, #32cd32);;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fortunewheel.frontend.PlayerController">
    <children>
       <Label contentDisplay="CENTER" layoutX="336.0" layoutY="37.0" prefHeight="67.0" prefWidth="130.0" style="-fx-border-color: #3b3737; -fx-border-width: 2; -fx-border-style: solid; -fx-label-padding: 20 0 20 25;" textAlignment="CENTER">
          <font>
@@ -39,11 +39,17 @@
          <font>
             <Font size="18.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
       </TextField>
       <Button fx:id="singleLetterButton" defaultButton="true" layoutX="570.0" layoutY="316.0" mnemonicParsing="false" onAction="#CheckInputLetter" prefHeight="45.0" prefWidth="63.0" style="-fx-background-color: #17802e; -fx-border-color: black; -fx-border-radius: 20px; -fx-background-radius: 20px;" text="Check">
          <font>
             <Font name="Arial Black" size="12.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
 
       <Label layoutX="483.0" layoutY="364.0" text="Sentence">
@@ -54,11 +60,17 @@
          <font>
             <Font size="18.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
       </TextField>
       <Button fx:id="sentenceButton" defaultButton="true" layoutX="851.0" layoutY="387.0" mnemonicParsing="false" onAction="#CheckInputSentence" prefHeight="45.0" prefWidth="63.0" style="-fx-background-color: #17802e; -fx-border-color: black; -fx-border-radius: 20px; -fx-background-radius: 20px;" text="Check">
          <font>
             <Font name="Arial Black" size="12.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
 
       <Label layoutX="483.0" layoutY="445.0" text="Activity">
@@ -76,6 +88,9 @@
          <font>
             <Font name="Arial Black" size="52.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
 
       <TextField fx:id="tf1" editable="false" layoutX="475.0" layoutY="169.0" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #cef2d6;">
@@ -98,7 +113,7 @@
             <Font size="18.0" />
          </font>
       </TextField>
-      <TextField fx:id="tf5" editable="false" layoutX="647.0" layoutY="169.0" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #cef2d6;">
+      <TextField fx:id="tf5" layoutX="647.0" layoutY="169.0" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #cef2d6;">
          <font>
             <Font size="18.0" />
          </font>
@@ -108,7 +123,7 @@
             <Font size="18.0" />
          </font>
       </TextField>
-      <TextField fx:id="tf7" editable="false" layoutX="733.0" layoutY="169.0" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #cef2d6;">
+      <TextField fx:id="tf7" layoutX="733.0" layoutY="169.0" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #cef2d6;">
          <font>
             <Font size="18.0" />
          </font>
@@ -138,19 +153,19 @@
             <Font name="Arial Black" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="roundNumber" alignment="CENTER" contentDisplay="CENTER" layoutX="60.0" layoutY="38.0" prefHeight="31.0" prefWidth="145.0" text="RUNDA" textAlignment="CENTER">
+      <Label fx:id="roundNumber" alignment="CENTER" contentDisplay="CENTER" layoutX="48.0" layoutY="38.0" prefHeight="31.0" prefWidth="145.0" text="RUNDA" textAlignment="CENTER">
          <font>
             <Font name="Arial Black" size="18.0" />
          </font></Label>
-      <Label fx:id="roundPlayer" alignment="CENTER" layoutX="60.0" layoutY="72.0" prefHeight="31.0" prefWidth="145.0" text="Tura gracza">
+      <Label fx:id="roundPlayer" alignment="CENTER" layoutX="24.0" layoutY="72.0" prefHeight="31.0" prefWidth="200.0" text="Tura gracza">
          <font>
-            <Font name="Arial" size="14.0" />
+            <Font name="Arial" size="19.0" />
          </font></Label>
       <Circle fill="DODGERBLUE" layoutX="245.0" layoutY="312.0" opacity="0.21" radius="185.0" stroke="BLACK" strokeType="INSIDE" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="240.0" layoutY="118.0" stroke="BLACK" strokeType="INSIDE" width="6.0" />
 
    </children>
    <cursor>
-      <Cursor fx:constant="HAND" />
+      <Cursor fx:constant="DEFAULT" />
    </cursor>
 </Pane>
