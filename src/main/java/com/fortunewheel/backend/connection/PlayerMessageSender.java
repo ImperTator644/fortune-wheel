@@ -1,6 +1,5 @@
 package com.fortunewheel.backend.connection;
 
-import com.fortunewheel.backend.connection.Message;
 import com.fortunewheel.backend.game.Functions;
 import com.fortunewheel.backend.handlers.players.Player;
 

@@ -1,6 +1,5 @@
 package com.fortunewheel.backend.connection;
 
-import com.fortunewheel.backend.connection.Message;
 import com.fortunewheel.backend.game.Functions;
 import com.fortunewheel.frontend.PlayerController;
 import com.fortunewheel.frontend.WheelSection;
@@ -16,12 +15,12 @@ public class PlayerMessageProcessor {
             }
             case BLOCK -> controller.blockFields();
             case UNBLOCK -> controller.unblockFields();
-            case CHAT -> {
-                Platform.runLater(()->controller.changeChat(message.getMessage()));
-            }
+            case CHAT -> Platform.runLater(()->controller.changeChat(message.getMessage()));
             case SETUP_ROUND -> Platform.runLater(()->controller.setupRound(message.getMessage()));
             case ROUND_NUMBER -> Platform.runLater(()->controller.setRoundNumber(message.getMessage()));
             case ROUND_PLAYER -> Platform.runLater(()->controller.setCurrentPlayer(message.getMessage()));
+            case LETTER -> Platform.runLater(()->controller.uncoverLetters(message.getMessage()));
+            case WORD -> Platform.runLater(()->controller.uncoverWord(message.getMessage()));
         }
     }
 }

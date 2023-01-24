@@ -21,10 +21,11 @@ public class ServerMessageProcessor {
             }
             case    SETUP_ROUND,
                     ROUND_NUMBER,
-                    ROUND_PLAYER -> broadcastMessage(message.toString(), playerHandlers);
-            case CHAT -> {
-                broadcastMessage(message.toString(), playerHandlers);
-            }
+                    ROUND_PLAYER,
+                    CHAT,
+                    LETTER,
+                    WORD-> broadcastMessage(message.toString(), playerHandlers);
+
         }
     }
 

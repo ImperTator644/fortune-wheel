@@ -2,7 +2,7 @@ package com.fortunewheel.backend.game;
 
 public enum Functions {
     LETTER("LETTER"),
-    SENTENCE("SENTENCE"),
+    WORD("WORD"),
     SPIN("SPIN"),
     BLOCK("BLOCK"),
     UNBLOCK("UNBLOCK"),
