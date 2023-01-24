@@ -1,5 +1,6 @@
 package com.fortunewheel.backend.handlers.server.room;
 
+import com.fortunewheel.backend.database.DBPuzzels;
 import com.fortunewheel.backend.game.Functions;
 import com.fortunewheel.backend.game.GameFlow;
 import com.fortunewheel.backend.game.Round;
@@ -45,6 +46,7 @@ public class PlayersRoom implements Runnable {
 
         PlayerHandler winner = getPlayerWithMostMoney();
         gameFlow.addMessageToChat(winner.getPlayerModel().getUsername(), playerHandlers, " WYGRAL!!!");
+        DBPuzzels.addPlayerToRanking(winner);
     }
 
     private PlayerHandler getPlayerWithMostMoney() {
