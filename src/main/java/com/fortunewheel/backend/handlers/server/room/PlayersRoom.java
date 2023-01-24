@@ -21,7 +21,7 @@ public class PlayersRoom implements Runnable {
         initializePlayerHandlers(players);
         this.executorService = executorService;
         rounds = new Round[5];
-        gameFlow = GameFlow.getInstance();
+        gameFlow = new GameFlow();
     }
 
     private void initializePlayerHandlers(List<Socket> players) {

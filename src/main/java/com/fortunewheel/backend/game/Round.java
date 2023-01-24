@@ -19,6 +19,10 @@ public class Round {
         return wordAndCategory;
     }
 
+    public String getWord() {
+        return wordAndCategory.split(" ")[0];
+    }
+
     @Override
     public String toString() {
         return "Round{" +

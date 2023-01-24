@@ -10,33 +10,67 @@ import java.util.Map;
 import java.util.Objects;
 
 public class GameFlow {
-    private static GameFlow instance = null;
-
-    private GameFlow(){
-    }
-
-    public static GameFlow getInstance(){
-        if(instance == null){
-            instance = new GameFlow();
-        }
-        return instance;
-    }
+    public GameFlow(){}
 
     public void playRound(Round round, Map<String, PlayerHandler> players){
         List<PlayerHandler> playerHandlers = new ArrayList<>(players.values());
         PlayerHandler currentPlayer = playerHandlers.get(0);
         int iterator = 0;
+        String currentWord = round.getWord();
         sendRoundInfo(players, iterator+1);
         while(true){
             blockAndUnblockPlayers(players, currentPlayer);
             sendCurrentPlayerInfo(players, currentPlayer.getPlayerModel().getUsername());
             Message messageReceived = Message.convertStringToMessage(currentPlayer.getMessageFromClient());
 
-            addMessageToChat(currentPlayer.getPlayerModel().getUsername(), messageReceived.getFunction(), players);
-
-            ServerMessageProcessor.processMessageToBroadCast(messageReceived, players);
+            switch (messageReceived.getFunction()){
+                case LETTER -> handleGuessedLetter(players, currentPlayer, currentWord, messageReceived);
+                case WORD -> handleGuessedWord(players, currentPlayer, currentWord, messageReceived);
+                case SPIN -> handleSpin(players, currentPlayer, messageReceived);
+            }
             iterator = iterator == 2 ? 0 : iterator + 1;
             currentPlayer = playerHandlers.get(iterator);
+        }
+    }
+
+    private void handleSpin(Map<String, PlayerHandler> players, PlayerHandler currentPlayer, Message messageReceived) {
+        addMessageToChat(currentPlayer.getPlayerModel().getUsername(), players, ChatMessages.SPUN.getMessageToChat());
+        ServerMessageProcessor.processMessageToBroadCast(messageReceived, players);
+    }
+
+    private void handleGuessedWord(Map<String, PlayerHandler> players, PlayerHandler currentPlayer, String currentWord, Message messageReceived) {
+        addMessageToChat(currentPlayer.getPlayerModel().getUsername(), players, ChatMessages.GUESSING_WORD.getMessageToChat());
+
+        if(checkIfWordCorrect(messageReceived.getMessage(), currentWord)){
+            addMessageToChat(currentPlayer.getPlayerModel().getUsername(), players, ChatMessages.CORRECT_WORD.getMessageToChat());
+            Message messageToSend = new Message.Builder()
+                    .setUsername("server")
+                    .setFunction(Functions.WORD)
+                    .setMessage(messageReceived.getMessage())
+                    .build();
+
+            ServerMessageProcessor.processMessageToBroadCast(messageToSend, players);
+        }
+        else{
+            addMessageToChat(currentPlayer.getPlayerModel().getUsername(), players, ChatMessages.WRONG_WORD.getMessageToChat());
+        }
+    }
+
+    private void handleGuessedLetter(Map<String, PlayerHandler> players, PlayerHandler currentPlayer, String currentWord, Message messageReceived) {
+        addMessageToChat(currentPlayer.getPlayerModel().getUsername(), players, ChatMessages.GUESSING_LETTER.getMessageToChat());
+        if(checkIfLetterCorrect(messageReceived.getMessage(), currentWord)){
+            addMessageToChat(currentPlayer.getPlayerModel().getUsername(), players, ChatMessages.CORRECT_LETTER.getMessageToChat());
+
+            Message messageToSend = new Message.Builder()
+                    .setUsername("server")
+                    .setFunction(Functions.LETTER)
+                    .setMessage(messageReceived.getMessage())
+                    .build();
+
+            ServerMessageProcessor.processMessageToBroadCast(messageToSend, players);
+        }
+        else{
+            addMessageToChat(currentPlayer.getPlayerModel().getUsername(), players, ChatMessages.WRONG_LETTER.getMessageToChat());
         }
     }
 
@@ -89,27 +123,20 @@ public class GameFlow {
         }
     }
 
-    private void addMessageToChat(String username, Functions function, Map<String, PlayerHandler> players){
-        String message = "";
-        switch (function.getFunction()){
-            case "SPIN": {
-                message = "zakrecil kolem";
-                break;
-            }
-            case "LETTER": {
-                message = "probuje odgadnac litere";
-                break;
-            }
-            case "SENTENCE": {
-                message = "probuje odgadnac haslo";
-                break;
-            }
-        }
+    private void addMessageToChat(String username, Map<String, PlayerHandler> players, String message){
         Message messageToSend = new Message.Builder()
                 .setUsername("server")
                 .setFunction(Functions.CHAT)
                 .setMessage(username + " " + message)
                 .build();
         ServerMessageProcessor.processMessageToBroadCast(messageToSend, players);
+    }
+
+    private boolean checkIfLetterCorrect(String letter, String wordOfTheRound){
+        return wordOfTheRound.contains(letter);
+    }
+
+    private boolean checkIfWordCorrect(String guessedWord, String wordOfTheRound){
+        return wordOfTheRound.equals(guessedWord);
     }
 }

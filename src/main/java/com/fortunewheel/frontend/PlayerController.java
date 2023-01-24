@@ -5,7 +5,6 @@ import com.fortunewheel.backend.connection.PlayerMessageSender;
 import com.fortunewheel.backend.connection.ServerListener;
 import com.fortunewheel.backend.game.Functions;
 import com.fortunewheel.backend.handlers.players.Player;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -40,7 +39,7 @@ public class PlayerController implements MainInterface {
     public ListView chatListView;
     boolean success = true;
     @FXML
-    public TextField sentence;
+    public TextField word;
     @FXML
     public TextField singleLetter;
     @FXML
@@ -77,7 +76,7 @@ public class PlayerController implements MainInterface {
         //listenToServer();
     }
 
-    public void setupRound(String wordAndCategory){
+    public void setupRound(String wordAndCategory) {
         String[] split = wordAndCategory.split(" ", 2);
         currentWord = split[0];
         currentCategory = split[1];
@@ -123,30 +122,49 @@ public class PlayerController implements MainInterface {
     }
 
     public void CheckInputLetter() {
-        String lett = singleLetter.getText();
-        singleLetter.clear();
+        String lett = singleLetter.getText().trim();
+        if (!lett.isBlank() && lett.length() == 1) {
 
-        if (currentWord.contains(lett)) {
-            success = true;
-            int index = 0;
-            for (int i = 0; i < currentWord.length(); i++) {
-                char c = currentWord.charAt(i);
-                if (String.valueOf(c).equals(lett)) {
-                    setLetter(index, Character.toString(c));
-                }
-                index++;
-            }
+            singleLetter.setStyle("-fx-background-color:  #cef2d6; -fx-border-color:  #3b3737; " +
+                    "-fx-border-radius: 5px; -fx-background-radius: 5px");
+
+            PlayerMessageSender.sendMessage(player, Functions.LETTER, lett.toUpperCase());
+            singleLetter.clear();
         }
-        success = false;
+        else {
+            singleLetter.setStyle("-fx-background-color: #e86b6b; -fx-border-color:  #3b3737; " +
+                    "-fx-border-radius: 5px; -fx-background-radius: 5px");
+        }
     }
-    public void CheckInputSentence(){
-        String senten = sentence.getText();
-        sentence.clear();
-        if (currentWord.equals(senten)){
-            success = true;
-            setSentence(senten);
+
+    public void uncoverLetters(String lett){
+        int index = 0;
+        for (int i = 0; i < currentWord.length(); i++) {
+            char c = currentWord.charAt(i);
+            if (String.valueOf(c).equals(lett)) {
+                setLetter(index, Character.toString(c));
+            }
+            index++;
         }
-        success = false;
+    }
+
+    public void uncoverWord(String word){
+        setWord(word);
+    }
+
+    public void CheckInputSentence() {
+        String guessedWord = word.getText().trim();
+        if (!guessedWord.isBlank()) {
+            word.setStyle(  "-fx-background-color:  #cef2d6; " +
+                            "-fx-border-color:  #3b3737; " +
+                            "-fx-border-radius: 5px; -fx-background-radius: 5px");
+            PlayerMessageSender.sendMessage(player, Functions.WORD, guessedWord.toUpperCase());
+            word.clear();
+        }
+        else {
+            word.setStyle("-fx-background-color: #e86b6b; -fx-border-color:  #3b3737; " +
+                    "-fx-border-radius: 5px; -fx-background-radius: 5px");
+        }
     }
 
     public void setLetter(int index, String str) {
@@ -173,7 +191,7 @@ public class PlayerController implements MainInterface {
         }
     }
 
-    public void setSentence(String str) {
+    public void setWord(String str) {
 
         String[] chars = str.split("");
         if (chars.length >= 4) {
@@ -207,34 +225,35 @@ public class PlayerController implements MainInterface {
         PlayerMessageSender.sendMessage(player, Functions.SPIN, "spin the wheel for me");
     }
 
-    public void setRoundNumber(String roundNumber){
+    public void setRoundNumber(String roundNumber) {
         this.roundNumber.setText("RUNDA: " + roundNumber);
     }
-    public void setCurrentPlayer(String currentPlayerName){
+
+    public void setCurrentPlayer(String currentPlayerName) {
         this.roundPlayer.setText("Tura gracza: " + currentPlayerName);
     }
 
     public void changeWheelView(WheelSection wheelSection) {
-        wheelImageView.setRotate(Integer.parseInt(wheelSection.getName())*15);
+        wheelImageView.setRotate(Integer.parseInt(wheelSection.getName()) * 15);
     }
 
-    public void blockFields(){
+    public void blockFields() {
         singleLetter.setEditable(false);
-        sentence.setEditable(false);
+        word.setEditable(false);
         spinTheWheelButton.setVisible(false);
         sentenceButton.setVisible(false);
         singleLetterButton.setVisible(false);
     }
 
-    public void unblockFields(){
+    public void unblockFields() {
         singleLetter.setEditable(true);
-        sentence.setEditable(true);
+        word.setEditable(true);
         spinTheWheelButton.setVisible(true);
         sentenceButton.setVisible(true);
         singleLetterButton.setVisible(true);
     }
 
-    public void changeChat(String message){
+    public void changeChat(String message) {
         chatListView.getItems().add(message);
         int items = chatListView.getItems().size();
         chatListView.scrollTo(items);
