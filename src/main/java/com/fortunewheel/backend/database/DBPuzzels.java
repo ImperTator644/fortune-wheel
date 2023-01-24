@@ -1,6 +1,8 @@
 package com.fortunewheel.backend.database;
 
 
+import com.fortunewheel.backend.handlers.server.room.PlayerHandler;
+
 import java.sql.*;
 import java.util.Random;
 
@@ -49,6 +51,17 @@ public class DBPuzzels {
         }
 
         return null;
+    }
+
+    public static void addPlayerToRanking(PlayerHandler player) {
+        try (Connection connection = DriverManager.getConnection(DBConstances.DBURL, DBConstances.DBUSER, DBConstances.DBPASS);
+             Statement statement = connection.createStatement()
+        ) {
+            statement.execute("CALL addPlayerToRanking('" + player.getPlayerModel().getUsername() + "'," + player.getPlayerModel().getMoney() + ");");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
 }
