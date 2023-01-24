@@ -236,5 +236,7 @@ public class PlayerController implements MainInterface {
 
     public void changeChat(String message){
         chatListView.getItems().add(message);
+        int items = chatListView.getItems().size();
+        chatListView.scrollTo(items);
     }
 }
