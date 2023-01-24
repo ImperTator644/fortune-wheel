@@ -2,6 +2,7 @@ package com.fortunewheel.backend.handlers.server.room;
 
 import com.fortunewheel.backend.game.Functions;
 import com.fortunewheel.backend.connection.Message;
+import com.fortunewheel.backend.game.GameFlow;
 import com.fortunewheel.frontend.WheelSection;
 
 import java.util.Map;
@@ -26,16 +27,16 @@ public class ServerMessageProcessor {
                     ROUND_PLAYER,
                     CHAT,
                     LETTER,
+                    END_ROUND,
                     WORD-> broadcastMessage(message.toString(), playerHandlers);
 
         }
     }
 
     public static void processMessageToOnePlayer(Message message, PlayerHandler playerHandler) {
-        //TODO obsluzenie free spina, dla tego samego gracza
         Functions function = message.getFunction();
         switch (function) {
-            case BLOCK, UNBLOCK, UNBLOCK_SPIN -> sendMessageToOnePlayer(message.toString(), playerHandler);
+            case BLOCK, UNBLOCK, UNBLOCK_SPIN, MONEY_UPDATE -> sendMessageToOnePlayer(message.toString(), playerHandler);
         }
     }
 

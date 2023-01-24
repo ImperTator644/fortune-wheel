@@ -35,12 +35,29 @@ public class PlayersRoom implements Runnable {
     public void run() {
         System.out.println("Player room initialized");
         setup();
-
+        int iterator = 1;
         for(Round round : rounds){
             playerHandlers.values().forEach(p -> p.getPlayerModel().resetRoundMoney());
             sendRoundSetup(round);
-            gameFlow.playRound(round, playerHandlers);
+            gameFlow.playRound(round, playerHandlers, iterator);
+            iterator++;
         }
+
+        PlayerHandler winner = getPlayerWithMostMoney();
+        gameFlow.addMessageToChat(winner.getPlayerModel().getUsername(), playerHandlers, " WYGRAL!!!");
+    }
+
+    private PlayerHandler getPlayerWithMostMoney() {
+        int maxMoney = 0;
+        PlayerHandler maxMoneyPlayer = null;
+        for (PlayerHandler playerHandler : playerHandlers.values()) {
+            if (maxMoney < playerHandler.getPlayerModel().getMoney()) {
+                maxMoney = playerHandler.getPlayerModel().getMoney();
+                maxMoneyPlayer = playerHandler;
+            }
+        }
+
+        return maxMoneyPlayer;
     }
 
     private void sendRoundSetup(Round round) {

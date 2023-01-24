@@ -59,6 +59,7 @@ public class PlayerController implements MainInterface {
 
     @FXML
     public ImageView wheelImageView;
+    @FXML Label playerMoney;
     public Player player;
 
     private String currentWord;
@@ -84,6 +85,18 @@ public class PlayerController implements MainInterface {
     }
 
     private void setRoundCategoryAndKey() {
+        tf1.setVisible(true);
+        tf2.setVisible(true);
+        tf3.setVisible(true);
+        tf4.setVisible(true);
+        tf5.setVisible(true);
+        tf6.setVisible(true);
+        tf7.setVisible(true);
+        tf8.setVisible(true);
+        tf9.setVisible(true);
+        tf10.setVisible(true);
+
+
         category.setText(currentCategory);
         int letter_size = currentWord.length();
         if (letter_size == 9) {
@@ -234,7 +247,7 @@ public class PlayerController implements MainInterface {
     }
 
     public void changeWheelView(WheelSection wheelSection) {
-        wheelImageView.setRotate(Integer.parseInt(wheelSection.getName()) * 15);
+        wheelImageView.setRotate(360 - Integer.parseInt(wheelSection.getName()) * 15);
     }
 
     public void blockFields() {
@@ -255,7 +268,7 @@ public class PlayerController implements MainInterface {
 
     public void unblockSpin(){
         singleLetter.setEditable(false);
-        sentence.setEditable(false);
+        word.setEditable(false);
         spinTheWheelButton.setVisible(true);
         sentenceButton.setVisible(false);
         singleLetterButton.setVisible(false);
@@ -265,5 +278,22 @@ public class PlayerController implements MainInterface {
         chatListView.getItems().add(message);
         int items = chatListView.getItems().size();
         chatListView.scrollTo(items);
+    }
+
+    public void endRound() {
+        tf1.setText("");
+        tf2.setText("");
+        tf3.setText("");
+        tf4.setText("");
+        tf5.setText("");
+        tf6.setText("");
+        tf7.setText("");
+        tf8.setText("");
+        tf9.setText("");
+        tf10.setText("");
+    }
+
+    public void updateMoney(String money) {
+        playerMoney.setText(money);
     }
 }

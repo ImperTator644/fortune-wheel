@@ -13,14 +13,17 @@ public class PlayerMessageProcessor {
                 WheelSection wheelSection = WheelSection.valueOf(message.getMessage());
                 controller.changeWheelView(wheelSection);
             }
-            case BLOCK -> controller.blockFields();
-            case UNBLOCK -> controller.unblockFields();
+            case BLOCK -> Platform.runLater(() -> controller.blockFields());
+            case UNBLOCK -> Platform.runLater(() -> controller.unblockFields());
+            case UNBLOCK_SPIN -> Platform.runLater(() -> controller.unblockSpin());
             case CHAT -> Platform.runLater(()->controller.changeChat(message.getMessage()));
             case SETUP_ROUND -> Platform.runLater(()->controller.setupRound(message.getMessage()));
             case ROUND_NUMBER -> Platform.runLater(()->controller.setRoundNumber(message.getMessage()));
             case ROUND_PLAYER -> Platform.runLater(()->controller.setCurrentPlayer(message.getMessage()));
             case LETTER -> Platform.runLater(()->controller.uncoverLetters(message.getMessage()));
             case WORD -> Platform.runLater(()->controller.uncoverWord(message.getMessage()));
+            case END_ROUND -> Platform.runLater(() -> controller.endRound());
+            case MONEY_UPDATE -> Platform.runLater(() ->controller.updateMoney(message.getMessage()));
         }
     }
 }
