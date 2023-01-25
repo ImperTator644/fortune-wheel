@@ -24,6 +24,8 @@ public class PlayerMessageProcessor {
             case WORD -> Platform.runLater(()->controller.uncoverWord(message.getMessage()));
             case END_ROUND -> Platform.runLater(() -> controller.endRound());
             case MONEY_UPDATE -> Platform.runLater(() ->controller.updateMoney(message.getMessage()));
+            case PLAYERS -> Platform.runLater(() -> controller.setPlayers(message.getMessage()));
+            case UPDATE_PLAYERS -> Platform.runLater(() -> controller.updatePlayers(message.getMessage()));
         }
     }
 }

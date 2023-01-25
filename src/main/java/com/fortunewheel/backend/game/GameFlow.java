@@ -63,6 +63,7 @@ public class GameFlow {
         playRound = true;
         this.players = players;
         playerHandlers = new ArrayList<>(players.values());
+        addPlayersToPlayersList(players, playerHandlers);
         currentPlayer = playerHandlers.get(0);
         iterator = 0;
         blockAndUnblockPlayers(players, currentPlayer);
@@ -108,11 +109,13 @@ public class GameFlow {
             case WHEEL_BANKRUPT -> {
                 currentPlayer.getPlayerModel().resetRoundMoney();
                 updateMoney(currentPlayer);
+                updateMoneyOnPlayersBoard(players, currentPlayer);
                 changePlayer();
             }
             case WHEEL_BANKRUPT_1000 -> {
                 currentPlayer.getPlayerModel().updatePlayerRoundMoney(-1000);
                 updateMoney(currentPlayer);
+                updateMoneyOnPlayersBoard(players, currentPlayer);
                 changePlayer();
             }
             case WHEEL_FREE_SPIN -> {
@@ -142,6 +145,16 @@ public class GameFlow {
 
         ServerMessageProcessor.processMessageToOnePlayer(messageToSend, currentPlayer);
     }
+    private void updateMoneyOnPlayersBoard(Map<String, PlayerHandler> players, PlayerHandler currentPlayer) {
+        Message messageToSend = new Message.Builder()
+                .setUsername("server")
+                .setFunction(Functions.UPDATE_PLAYERS)
+                .setMessage(currentPlayer.getPlayerModel().getUsername() + " " + currentPlayer.getPlayerModel().getMoneyInRound())
+                .build();
+
+
+        ServerMessageProcessor.processMessageToBroadCast(messageToSend, players, this);
+    }
 
     private void handleSpin(Map<String, PlayerHandler> players, PlayerHandler currentPlayer, Message messageReceived) {
         addMessageToChat(currentPlayer.getPlayerModel().getUsername(), players, ChatMessages.SPUN.getMessageToChat());
@@ -162,6 +175,7 @@ public class GameFlow {
                     .build();
 
             currentPlayer.getPlayerModel().updatePlayerRoundMoney(Integer.valueOf(wheelValuesMap.get(currentSection)));
+            updateMoneyOnPlayersBoard(players, currentPlayer);
             ServerMessageProcessor.processMessageToBroadCast(messageToSend, players, this);
             playRound = false;
             currentPlayer.getPlayerModel().updatePlayerMoney(currentPlayer.getPlayerModel().getMoneyInRound());
@@ -193,6 +207,7 @@ public class GameFlow {
             ServerMessageProcessor.processMessageToBroadCast(messageToSend, players, this);
 
             updateMoney(currentPlayer);
+            updateMoneyOnPlayersBoard(players, currentPlayer);
 
             blockAndUnblockPlayers(players, currentPlayer);
         }
@@ -229,6 +244,25 @@ public class GameFlow {
 
         ServerMessageProcessor.processMessageToBroadCast(messageToSend, players, this);
         System.out.println("Sent info about current player =  " + currentPlayerName);
+    }
+
+    public void addPlayersToPlayersList(Map<String, PlayerHandler> players, List<PlayerHandler> playerHandlers){
+        String name1 = playerHandlers.get(0).getPlayerModel().getUsername();
+        String name2 = playerHandlers.get(1).getPlayerModel().getUsername();
+        String name3 = playerHandlers.get(2).getPlayerModel().getUsername();
+
+        int money1 = playerHandlers.get(0).getPlayerModel().getMoney();
+        int money2 = playerHandlers.get(1).getPlayerModel().getMoney();
+        int money3 = playerHandlers.get(2).getPlayerModel().getMoney();
+
+        Message messageToSend = new Message.Builder()
+                .setUsername("server")
+                .setFunction(Functions.PLAYERS)
+                .setMessage(name1 + " " + money1 + "/" + name2 + " " + money2 + "/" + name3 + " " + money3)
+                .build();
+
+        ServerMessageProcessor.processMessageToBroadCast(messageToSend, players, this);
+        System.out.println("Add players to players list =  " + playerHandlers);
     }
 
     private void blockAndUnblockPlayers(Map<String, PlayerHandler> players, PlayerHandler currentPlayer){
