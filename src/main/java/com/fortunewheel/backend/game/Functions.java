@@ -14,7 +14,9 @@ public enum Functions {
     END_ROUND("END_ROUND"),
     MONEY_UPDATE("MONEY_UPDATE"),
     INFO("INFO"),
-    CHAT("CHAT");
+    CHAT("CHAT"),
+    PLAYERS("PLAYERS"),
+    UPDATE_PLAYERS("UPDATE_PLAYERS");
 
     private final String function;
 

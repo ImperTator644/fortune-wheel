@@ -28,6 +28,8 @@ public class ServerMessageProcessor {
                     CHAT,
                     LETTER,
                     END_ROUND,
+                    PLAYERS,
+                    UPDATE_PLAYERS,
                     WORD-> broadcastMessage(message.toString(), playerHandlers);
 
         }

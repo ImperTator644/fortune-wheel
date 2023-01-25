@@ -37,7 +37,9 @@ public class PlayerController implements MainInterface {
     public TextField tf10;
     @FXML
     public ListView chatListView;
-    boolean success = true;
+    @FXML
+    public ListView playersListView;
+
     @FXML
     public TextField word;
     @FXML
@@ -295,5 +297,21 @@ public class PlayerController implements MainInterface {
 
     public void updateMoney(String money) {
         playerMoney.setText(money);
+    }
+
+    public void setPlayers(String message){
+        String players[] = message.split("/");
+        playersListView.getItems().clear();
+        playersListView.getItems().add(players[0]);
+        playersListView.getItems().add(players[1]);
+        playersListView.getItems().add(players[2]);
+    }
+
+    public void updatePlayers(String message){
+        String name = message.split(" ")[0];
+        String money = message.split(" ")[1];
+        playersListView.getItems().add(name + " " + money);
+        int items = playersListView.getItems().size();
+        playersListView.scrollTo(items);
     }
 }
